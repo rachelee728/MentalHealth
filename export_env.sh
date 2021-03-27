@@ -1,0 +1,1 @@
+ export GOOGLE_APPLICATION_CREDENTIALS="mentalhealth-hoohacks2021-60d1aa8fe6e9.json"
