@@ -11,15 +11,24 @@ chrome.runtime.onMessage.addListener(function(request) {
               focused: true,
               height: 300,
               width: 400,
-              left : 400,
-              top: 475
+              left : 475,
+              top: 450
               // incognito, top, left, ...
           });
       });
   }
 });
 function setMsg(message) {
-  console.log(message);
+  //console.log(message);
+  chrome.storage.sync.set({key: message}, function() {
+    console.log('Value is set to ' + message);
+  });
+  chrome.storage.sync.get(['key'], function(result) {
+    console.log('Value currently is ' + result.key);
+  });
+  //get advice
+  alert("Believe");
+
 };
 
 
