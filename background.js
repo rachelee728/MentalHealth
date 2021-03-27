@@ -27,7 +27,33 @@ function setMsg(message) {
     console.log('Value currently is ' + result.key);
   });
   //get advice
-  alert("Believe");
+  const data = { "text": message };
+
+  fetch('http://35.212.98.63:8080/', {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+    console.log(data.score);
+    console.log(typeof(data.score));
+    if(data.score < -0.5){
+      alert("I am sorry, please call 1800-273-8255 or talk to a friend.");
+    }
+    else if(data.score > 0.5){
+      alert("Way to go!");
+    }
+    else{
+      alert("Do something that makes you happy, you deserve it!")
+    }
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
 
 };
 
