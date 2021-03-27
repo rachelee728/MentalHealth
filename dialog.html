@@ -1,9 +1,45 @@
 <!DOCTYPE html><html>
-    <head><title>Be kind to yourself :)</title></head><body>
-    <form>
-        <input id="pass" type="text">
-        <input type="submit" value="OK">
-    </form>
-    <script src="dialog.js">        
-    </script>
-    </body></html>
+    <head>
+        <title>You First</title>
+        <style> 
+        input[type=text] {
+            width: 70%;
+            height: 10%;
+            border-radius: 8px;
+            border-color: silver;
+        }
+        .background {
+            background-color: #D8BFD8;
+        }
+        .entry {
+            margin-top: 5%;
+            margin-left: 15%;
+        }
+        .message {
+            margin-top: 20%;
+            margin-left: 25%;
+        }
+        input[type=submit] {
+            border-radius: 8px;
+            border-color: silver;
+            background-color: white;
+        }
+        .feeling {
+            font-size: 20px;
+        }
+        </style>
+    </head>
+    <body class="background">
+        <div class="message" id="message">
+            <p class="feeling">How are you feeling?</p>
+        </div>
+    
+        <div class="entry" id="entry">
+        <form>
+            <input id="pass" type="text">
+            <input type="submit" value="Send">
+        </form>
+        </div>
+        <script src="dialog.js"></script>
+    </body>
+</html>
