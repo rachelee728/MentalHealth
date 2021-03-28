@@ -18,8 +18,11 @@ chrome.runtime.onMessage.addListener(function(request) {
       });
   }
 });
+
 function setMsg(message) {
   //console.log(message);
+  prev = 0.0;
+
   chrome.storage.sync.set({key: message}, function() {
     console.log('Value is set to ' + message);
   });
@@ -41,14 +44,33 @@ function setMsg(message) {
     console.log('Success:', data);
     console.log(data.score);
     console.log(typeof(data.score));
-    if(data.score < -0.5){
-      alert("I am sorry, please call 1800-273-8255 or talk to a friend.");
+    if(data.score < -0.5 && data.score < prev){
+      prev = data.score;
+      alert("I am sorry, how you can change something in your life to slowly get better? Talking to a friend helps wonders!");
     }
-    else if(data.score > 0.5){
-      alert("Way to go!");
+    else if(data.score < -0.5 && data.score > prev){
+      prev = data.score;
+      alert("I see you're doing better than before, keep going!");
+    }
+    else if(data.score < -0.5 && data.score === prev){
+      prev = data.score;
+      alert("Feeling the same as before? We all get in a rut sometimes... Even the smallest things can help boost your mood!");
+    }
+    else if(data.score > 0.5 && data.score>prev){
+      prev = data.score;
+      alert("Way to go! I also see that you are doing better than yesterday!");
+    }
+    else if(data.score > 0.5 && data.score < prev){
+      prev = data.score;
+      alert("Oh, you're doing worse than yesterday, it's alright! Be patient with yourself.");
+    }
+    else if(data.score > 0.5 && data.score === prev){
+      prev = data.score;
+      alert("Same good mood as yesterday I see! Right on!");
     }
     else{
-      alert("Do something that makes you happy, you deserve it!")
+      prev = data.score;
+      alert("Do something that makes you happy, you deserve it!");
     }
   })
   .catch((error) => {
